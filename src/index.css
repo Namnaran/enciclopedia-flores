@@ -1,0 +1,13 @@
+@import "tailwindcss";
+@source "../server/data";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-salvia-100: #e4eadd;
+  --color-salvia-300: #b4c3a5;
+  --color-salvia-500: #869b75;
+  --color-salvia-700: #4f6243;
+  --color-salvia-900: #2b3626;
+    --breakpoint-3xl: 106.25rem;
+}

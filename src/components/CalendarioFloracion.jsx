@@ -8,11 +8,12 @@ function CalendarioFloracion({ flores }) {
 
   return (
     <motion.section
+    id="calendario"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-100px' }}
       transition={{ duration: 0.7, ease: 'easeOut' }}
-      className="mx-auto mt-24 max-w-[2000px]"
+       className="mx-auto mt-24 max-w-[2000px] scroll-mt-24"
     >
       <h2 className="text-3xl font-light tracking-tight text-salvia-900 dark:text-salvia-100">
         Calendario de floración

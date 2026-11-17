@@ -11,3 +11,7 @@
   --color-salvia-900: #2b3626;
     --breakpoint-3xl: 106.25rem;
 }
+
+html {
+  scroll-behavior: smooth;
+}

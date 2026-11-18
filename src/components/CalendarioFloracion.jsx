@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion'
+import { meses } from '../meses'
 
-const meses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
 
-function CalendarioFloracion({ flores }) {
+function CalendarioFloracion({ flores, mes, onElegirMes }) {
   const mesActual = new Date().getMonth() + 1
   const enFlor = flores.filter((flor) => flor.meses.includes(mesActual))
 
@@ -25,18 +25,21 @@ function CalendarioFloracion({ flores }) {
       <div className="mt-8 overflow-x-auto rounded-3xl border border-stone-200 bg-white p-6 dark:border-white/10 dark:bg-stone-900">
         <div className="grid min-w-[44rem] grid-cols-[8rem_repeat(12,minmax(0,1fr))] items-center gap-1.5">
           <div />
-          {meses.map((mes, i) => (
-            <div
-              key={mes}
-              className={`text-center text-xs uppercase tracking-widest ${
-                i + 1 === mesActual
-                  ? 'font-semibold text-salvia-700 dark:text-salvia-300'
-                  : 'text-stone-400'
-              }`}
-            >
-              {mes}
-            </div>
-          ))}
+          {meses.map((nombre, i) => (
+  <button
+    key={nombre}
+    onClick={() => onElegirMes(mes === i + 1 ? null : i + 1)}
+    className={`rounded-md py-1 text-center text-xs uppercase tracking-widest transition ${
+      mes === i + 1
+        ? 'bg-salvia-700 text-white'
+        : i + 1 === mesActual
+          ? 'font-semibold text-salvia-700 hover:bg-salvia-100 dark:text-salvia-300 dark:hover:bg-white/10'
+          : 'text-stone-400 hover:bg-salvia-100 dark:hover:bg-white/10'
+    }`}
+  >
+    {nombre}
+  </button>
+))}
 
           {flores.map((flor) => (
             <div key={flor.id} className="contents">
@@ -47,14 +50,14 @@ function CalendarioFloracion({ flores }) {
   />
   {flor.nombre}
 </p>
-              {meses.map((mes, i) => (
-                <div
-                  key={mes}
-                  className={`h-8 rounded-md ${
-                    flor.meses.includes(i + 1) ? 'bg-salvia-500' : 'bg-stone-100 dark:bg-white/5'
-                  }`}
-                />
-              ))}
+              {meses.map((nombre, i) => (
+  <div
+    key={nombre}
+    className={`h-8 rounded-md ${
+      flor.meses.includes(i + 1) ? 'bg-salvia-500' : 'bg-stone-100 dark:bg-white/5'
+    } ${mes === i + 1 ? 'ring-2 ring-salvia-900/50 dark:ring-white/60' : ''}`}
+  />
+))}
             </div>
           ))}
         </div>

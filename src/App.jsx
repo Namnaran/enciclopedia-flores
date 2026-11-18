@@ -7,6 +7,7 @@ import FlowerModal from './components/FlowerModal'
 import CalendarioFloracion from './components/CalendarioFloracion'
 import { API_URL } from './api'
 import JardinFlores from './components/JardinFlores'
+import Comentarios from './components/Comentarios'
 
 function App() {
   const [seleccionada, setSeleccionada] = useState(null)
@@ -75,6 +76,7 @@ function App() {
 {estado === 'listo' && (
   <JardinFlores flores={flores} oscuro={oscuro} mes={mes} onElegirMes={setMes} />
 )}
+
         <main
           id="flores"
           className="mx-auto mt-14 grid max-w-[2000px] scroll-mt-24 gap-6 sm:grid-cols-2 lg:auto-rows-[24rem] lg:grid-cols-3 xl:grid-cols-5"
@@ -92,6 +94,7 @@ function App() {
         </main>
 
         {estado === 'listo' && <CalendarioFloracion flores={flores} mes={mes} onElegirMes={setMes} />}
+        {estado === 'listo' && <Comentarios />}
       </div>
 
       <Footer />

@@ -4,7 +4,7 @@ import Flower from './Flower'
 
 function FlowerViewer({ color, acelerar = false }) {
   return (
-    <Canvas camera={{ position: [0, 1.5, 3.5], fov: 40 }}>
+    <Canvas dpr={[1, 1.5]} camera={{ position: [0, 1.5, 3.5], fov: 40 }}>
       <ambientLight intensity={0.8} />
       <directionalLight position={[3, 5, 2]} intensity={2} />
       <Flower color={color} />

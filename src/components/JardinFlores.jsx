@@ -1,11 +1,12 @@
 import { useMemo, useRef } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { OrthographicCamera } from '@react-three/drei'
 import Flower from './3d/Flower'
 import { MathUtils } from 'three'
 import SelectorMes from './SelectorMes'
 import { mesesLargos } from '../meses'
+
 
 const ANCHO = 40
 
@@ -31,6 +32,7 @@ function Camara() {
 function FlorDelJardin({ x, z, escala, fase, color, visible }) {
   const balanceo = useRef()
   const exterior = useRef()
+  
 
   useFrame(({ clock }, delta) => {
     const t = clock.getElapsedTime()
@@ -54,8 +56,9 @@ exterior.current.visible = tamano > 0.01
 
 function JardinFlores({ flores, oscuro, mes, onElegirMes }) {
   const plantas = useMemo(
+    
     () =>
-      Array.from({ length: 100 }).map((_, i) => ({
+      Array.from({ length: window.innerWidth < 768 ? 20 : 100 }).map((_, i) => ({
         id: i,
         x: (Math.random() - 0.5) * (ANCHO - 2),
         z: (Math.random() - 0.5) * (FONDO - 2),
@@ -65,6 +68,8 @@ function JardinFlores({ flores, oscuro, mes, onElegirMes }) {
       })),
     [flores]
   )
+    const panel = useRef(null)
+  const enPantalla = useInView(panel, { margin: '200px' })
 
   return (
     <motion.section
@@ -76,7 +81,8 @@ function JardinFlores({ flores, oscuro, mes, onElegirMes }) {
       className="mx-auto mt-14 max-w-[2000px] scroll-mt-24"
     >
       <SelectorMes mes={mes} onElegirMes={onElegirMes} />
-      <div className="h-[32rem] overflow-hidden rounded-3xl border border-stone-200 bg-salvia-100 dark:border-white/10 dark:bg-stone-900">
+      <div ref={panel} className="h-[32rem] overflow-hidden rounded-3xl border border-stone-200 bg-salvia-100 dark:border-white/10 dark:bg-stone-900">
+        {enPantalla && (
         <Canvas>
           <Camara />
           <ambientLight intensity={oscuro ? 0.35 : 0.9} color={oscuro ? '#9fb4ff' : '#ffffff'} />
@@ -104,6 +110,7 @@ function JardinFlores({ flores, oscuro, mes, onElegirMes }) {
   )
 })}
         </Canvas>
+        )}
         
       </div>
       <p className="mt-3 text-xs text-stone-400">

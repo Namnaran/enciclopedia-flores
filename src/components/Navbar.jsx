@@ -9,25 +9,28 @@ function Navbar({ oscuro, onCambiarTema }) {
         <div className="flex items-center gap-6 text-sm">
           <a
             href="#flores"
-            className="text-stone-600 transition hover:text-salvia-700 dark:text-stone-300 dark:hover:text-salvia-300"
+              className="hidden text-stone-600 transition hover:text-salvia-700 sm:inline dark:text-stone-300 dark:hover:text-salvia-300"
+
           >
             Flores
           </a>
           <a
             href="#calendario"
-            className="text-stone-600 transition hover:text-salvia-700 dark:text-stone-300 dark:hover:text-salvia-300"
+              className="hidden text-stone-600 transition hover:text-salvia-700 sm:inline dark:text-stone-300 dark:hover:text-salvia-300"
+
           >
             Calendario
           </a>
           <a
   href="#comentarios"
-  className="text-stone-600 transition hover:text-salvia-700 dark:text-stone-300 dark:hover:text-salvia-300"
+    className="hidden text-stone-600 transition hover:text-salvia-700 sm:inline dark:text-stone-300 dark:hover:text-salvia-300"
+
 >
   Comentarios
 </a>
           <button
             onClick={onCambiarTema}
-            className="rounded-full border border-stone-300 px-4 py-2 transition hover:bg-salvia-100 dark:border-white/20 dark:hover:bg-white/10"
+            className="shrink-0 whitespace-nowrap rounded-full border border-stone-300 px-4 py-2 transition hover:bg-salvia-100 dark:border-white/20 dark:hover:bg-white/10"
           >
             {oscuro ? '☀ Claro' : '☾ Oscuro'}
           </button>
